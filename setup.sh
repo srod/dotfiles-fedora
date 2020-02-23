@@ -2,12 +2,12 @@
 
 cat <<EOF
 
- Pop!_OS Installation Script
+ Fedora Installation Script
 
 
 EOF
 
-declare -r GITHUB_REPOSITORY="srod/dotfiles-pop_os"
+declare -r GITHUB_REPOSITORY="srod/dotfiles-fedora"
 
 declare -r DOTFILES_ORIGIN="https://github.com/$GITHUB_REPOSITORY.git"
 declare -r DOTFILES_UTILS_URL="https://raw.githubusercontent.com/$GITHUB_REPOSITORY/master/src/os/utils.sh"
@@ -106,7 +106,7 @@ update_system() {
     ask_for_confirmation "Your system must be updated first, do you want to?"
     if answer_is_yes; then
         execute \
-            "sudo apt update && sudo apt upgrade" "Checking updates..."
+            "sudo dnf upgrade" "Checking updates..."
     fi
 
 }
@@ -152,10 +152,6 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     source ./create_symbolic_links.sh
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # source ./create_local_config_files.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

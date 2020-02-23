@@ -1,197 +1,100 @@
 #!/bin/bash
 
-# declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.bash.local"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # System
 print_in_blue "\n   Packages - System\n\n"
-# package_install "Bat" "bat"
-sudo apt install -y bat
-# package_install "Ncdu" "ncdu"
-sudo apt install -y ncdu
-# package_install "Ngrep" "ngrep"
-sudo apt install -y ngrep
-# package_install "Nmap" "nmap"
-sudo apt install -y nmap
-# package_install "Prettyping" "prettyping"
-# package_install "Tcpdump" "tcpdump"
-sudo apt install -y tcpdump
-# package_install "Vim" "vim"
-sudo apt install -y vim
-# package_install "Java" "default-jdk"
-sudo apt install -y default-jdk
-# package_install "Xclip" "xclip"
-sudo apt install -y xclip
-# package_install "Neofetch" "neofetch"
-sudo apt install -y neofetch
-# package_install "Htop" "htop"
-sudo apt install -y htop
-# package_install "Snap" "snapd"
-sudo apt install -y snapd
-
-# execute ". $LOCAL_SHELL_CONFIG_FILE" "Load env"
+sudo dnf install -y fedora-workstation-repositories
+sudo dnf distro-sync
+sudo dnf install -y bat ncdu ngrep nmap tcpdump vim xclip neofetch htop
+sudo dnf install -y java-latest-openjdk-headless
+sudo dnf install -y snapd
+sudo ln -s /var/lib/snapd/snap /snap
+sudo snap refresh
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+sudo dnf install tlp tlp-rdw
+sudo systemctl enable tlp
 
 # Security
-# package_install "Clamav" "clamav"
-sudo apt install -y clamav
-sudo sed -i '/Example/d' /etc/clamav/freshclam.conf
-sudo systemctl enable clamav-freshclam.service
-# execute \
-#     "sudo sed -i '/Example/d' /etc/clamav/freshclam.conf" \
-#     "Set up Clamav config files"
-# execute \
-#     "sudo systemctl enable clamav-freshclam.service" \
-#     "Enable Freshclam"
-# package_install "UFW" "ufw gufw"
-sudo apt install -y ufw gufw
-sudo systemctl enable ufw.service
-# execute \
-#     "sudo systemctl enable ufw.service" \
-#     "Enable UFW"
+sudo dnf install -y clamav clamav-update
+sudo sed -i '/Example/d' /etc/freshclam.conf
+sudo freshclam
+sudo systemctl enable clamav-freshclam.service --now
+# clamscan --infected --remove --recursive /home
+sudo dnf install -y clamtk
+
+sudo dnf install -y firewalld
+sudo systemctl unmask firewalld
+sudo systemctl start firewalld
+sudo systemctl enable firewalld
+sudo firewall-cmd --set-default-zone=home
+sudo firewall-cmd --remove-service=ssh --permanent --zone=home
+sudo firewall-cmd --reload
+sudo dnf install -y firewall-config
+
+sudo snap install authy --beta
 
 # Browsers
 print_in_blue "\n   Packages - Browsers\n\n"
-# snap_install "Brave" "brave"
-sudo snap install brave
-# package_install "Chromium" "chromium"
-sudo apt install -y chromium
+sudo dnf config-manager --set-enabled google-chrome
+sudo dnf install -y google-chrome-stable
 
 # GPG
 print_in_blue "\n   Packages - GPG\n"
-# execute \
-#     "curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb && sudo apt-get install ./keybase_amd64.deb" \
-#     "Keybase"
-
-curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
-sudo apt install -y ./keybase_amd64.deb
+sudo dnf install -y https://prerelease.keybase.io/keybase_amd64.rpm
 run_keybase
-rm -rf keybase_amd64.deb
 
 # IDE
 print_in_blue "\n   Packages - IDE\n\n"
-# snap_install "Sublime Text" "sublime-text --classic"
-sudo snap install sublime-text --classic
-# snap_install "Visual Studio Code" "code --classic"
+sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
+sudo dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+sudo dnf install -y sublime-text
+
 
 print_in_blue "\n   Package - Visual Studio Code\n\n"
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-sudo apt install -y apt-transport-https
-sudo apt update
-sudo apt install -y code
-rm microsoft.gpg
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+sudo dnf check-update
+sudo dnf install -y code-insiders
 
 # Terminal
 print_in_blue "\n   Packages - Terminal\n\n"
-# package_install "ZSH Completions" "zsh-completions"
 
 # Utilities
-# package_install "Dropbox" "nautilus-dropbox"
-sudo apt install -y nautilus-dropbox
-# execute \
-#     "sudo add-apt-repository -y ppa:openrazer/stable && sudo apt-get update && sudo apt-get install -y openrazer-meta" \
-#     "OpenRazer"
-sudo add-apt-repository -y ppa:openrazer/stable
-sudo apt-get update
-sudo apt-get install -y openrazer-meta
+sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_Rawhide/hardware:razer.repo
+sudo dnf install -y openrazer-meta
 sudo gpasswd -a rodolphe plugdev
-
-# execute \
-#     "sudo gpasswd -a rodolphe plugdev" \
-#     "Add rodolphe to plugdev"
-
-# execute \
-#     "sudo add-apt-repository -y ppa:polychromatic/stable && sudo apt-get update && sudo apt-get install -y polychromatic" \
-#     "Polychromatic"
-
-sudo add-apt-repository -y ppa:polychromatic/stable
-sudo apt-get update
-sudo apt-get install -y polychromatic
-
-# snap_install "Simple Note" "simplenote"
+sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_Rawhide/hardware:razer.repo
+sudo dnf install -y polychromatic
 sudo snap install simplenote
+sudo dnf install ulauncher
 
-# execute \
-#     "sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C && sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys ACCAF35C" \
-#     "Insync Keys"
+sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
+sudo sh -c 'echo -e "[insync]\nname=insync repo\nbaseurl=http://yum.insync.io/fedora/\$releasever/\ngpgkey=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key" > /etc/yum.repos.d/insync.repo'
+sudo dnf install -y insync
 
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys ACCAF35C
+sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-32.noarch.rpm
+sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-32.noarch.rpm
 
-sudo touch /etc/apt/sources.list.d/insync.list
-echo 'deb http://apt.insync.io/ubuntu eoan non-free contrib' | sudo tee -a /etc/apt/sources.list.d/insync.list
-sudo apt-get update
-sudo apt-get install -y insync
+sudo dnf install -y meld unrar pdfarranger youtube-dl
 
-# execute \
-#     "sudo touch /etc/apt/sources.list.d/insync.list && echo 'deb http://apt.insync.io/ubuntu eoan non-free contrib' | sudo tee -a /etc/apt/sources.list.d/insync.list && sudo apt-get update && sudo apt-get install -y insync" \
-#     "Insync"
-
-# package_install "Meld" "meld"
-sudo apt-get install -y meld
-# package_install "Unrar" "unrar"
-sudo apt-get install -y unrar
-# package_install "PDF Arranger" "pdfarranger"
-sudo apt-get install -y pdfarranger
-# package_install "Youtube dl" "youtube-dl"
-sudo apt-get install -y youtube-dl
-
-# execute \
-#     "echo 'deb https://deb.etcher.io stable etcher' | sudo tee /etc/apt/sources.list.d/balena-etcher.list && sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 379CE192D401AB61" \
-#     "Etcher Keys"
-
-echo "deb https://deb.etcher.io stable etcher" | sudo tee /etc/apt/sources.list.d/balena-etcher.list
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 379CE192D401AB61
-sudo apt-get update
-sudo apt-get install -y balena-etcher-electron
-
-# execute \
-#     "sudo apt-get update && sudo apt-get install -y balena-etcher-electron" \
-#     "Etcher"
+sudo wget https://balena.io/etcher/static/etcher-rpm.repo -O /etc/yum.repos.d/etcher-rpm.repo
+sudo dnf install -y balena-etcher-electron
 
 # Videos
 print_in_blue "\n   Packages - Videos\n\n"
-# package_install "VLC" "vlc"
-sudo apt-get install -y vlc
-# snap_install "Shotcut" "shotcut"
-sudo snap install shotcut --classic
-# snap_install "Kdenlive" "kdenlive"
-sudo snap install kdenlive
+sudo dnf install -y vlc
+sudo flatpak install -y shotcut kdenlive
 
 # Fonts
-# print_in_blue "\n   Packages - Fonts\n\n"
-# yay_install "Hack Nerd" "nerd-fonts-hack"
-# yay_install "TTF ms fonts" "ttf-ms-fonts"
-# yay_install "TTF Monaco" "ttf-monaco"
-# yay_install "TTF Vista Fonts" "ttf-vista-fonts"
-# yay_install "TTF Google Fonts" "ttf-google-fonts-git"
-# package_install "TTF Dejavu" "ttf-dejavu"
-# yay_install "TTF Fira Code" "ttf-fira-code"
-# package_install "TTF Liberation" "ttf-liberation"
-# package_install "Noto Fonts" "noto-fonts"
-# package_install "Emoji" "noto-fonts-emoji"
-# package_install "TTF Inconsolata" "ttf-inconsolata"
-# package_install "Terminus Font" "terminus-font"
-# package_install "Cantarell Fonts" "cantarell-fonts"
-# package_install "TTF Bitstream Vera" "ttf-bitstream-vera"
-# package_install "TTF Hack" "ttf-hack"
-# yay_install "TTF Mac Fonts" "ttf-mac-fonts"
+print_in_blue "\n   Packages - Fonts\n\n"
+sudo dnf install -y curl cabextract xorg-x11-font-utils fontconfig
+sudo dnf install -y http://sourceforge.net/projects/mscorefonts2/files/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+sudo dnf install -y fira-code-fonts
+sudo dnf install -y powerline-fonts
 
 # YARN
 if [ -d "$HOME/.nvm" ]; then
     print_in_blue "\n   Packages - Node\n\n"
-    # execute \
-    #     "curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && echo 'deb https://dl.yarnpkg.com/debian/ stable main' | sudo tee /etc/apt/sources.list.d/yarn.list" \
-    #     "Yarn Keys"
 
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-    echo 'deb https://dl.yarnpkg.com/debian/ stable main' | sudo tee /etc/apt/sources.list.d/yarn.list
-    sudo apt-get update
-    sudo apt-get install --no-install-recommends -y yarn
-    
-    # execute \
-    #     "sudo apt-get update && sudo apt-get install --no-install-recommends yarn" \
-    #     "Yarn"
+    curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+    sudo dnf install -y yarn
 fi
