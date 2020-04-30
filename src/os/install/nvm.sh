@@ -1,7 +1,7 @@
 #!/bin/bash
 
 declare -r NVM_DIRECTORY="$HOME/.nvm"
-declare -r NVM_GIT_REPO_URL="https://github.com/creationix/nvm.git"
+declare -r NVM_GIT_REPO_URL="https://github.com/nvm-sh/nvm"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -43,7 +43,7 @@ main() {
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
     [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
-    install_node 13
+    install_node 14
     install_node 12
     install_node 10
 

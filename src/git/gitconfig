@@ -103,6 +103,8 @@
 
     pr-clean = "!git checkout master ; git for-each-ref refs/heads/pr/* --format=\"%(refname)\" | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
 
+    up = pull --rebase --autostash
+
 [diff]
     # Detect copies as well as renames
     renames = copies

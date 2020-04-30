@@ -22,9 +22,10 @@ alias aliases="subl $DOTFILES/src/shell/zsh/aliases/aliases.zsh"
 
 # Update
 alias fedoraup="sudo dnf distro-sync; sudo dnf upgrade"
-alias gemup="gem update --system; gem update; gem cleanup"
+alias flatpakup="flatpak update"
+alias snapup="sudo snap refresh"
 alias npmup="npm -g update; npm install -g npm"
-alias update="fedoraup; gemup; npmup"
+alias update="fedoraup; flatpakup; snapup; npmup"
 
 # Work
 alias work="cd ~/Insync/srodolphe@gmail.com/OneDrive/www"

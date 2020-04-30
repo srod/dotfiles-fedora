@@ -65,7 +65,6 @@ sudo gpasswd -a rodolphe plugdev
 sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_Rawhide/hardware:razer.repo
 sudo dnf install -y polychromatic
 sudo snap install simplenote
-sudo dnf install ulauncher
 
 sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
 sudo sh -c 'echo -e "[insync]\nname=insync repo\nbaseurl=http://yum.insync.io/fedora/\$releasever/\ngpgkey=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key" > /etc/yum.repos.d/insync.repo'
