@@ -10,4 +10,3 @@ alias gco="git checkout"
 alias gpr="git pull --rebase"
 
 alias git_conflicts="git diff --name-only --diff-filter=U"
-alias gitstashpull="git stash && git pullr && git stash pop"

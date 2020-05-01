@@ -28,11 +28,11 @@ alias npmup="npm -g update; npm install -g npm"
 alias update="fedoraup; flatpakup; snapup; npmup"
 
 # Work
-alias work="cd ~/Insync/srodolphe@gmail.com/OneDrive/www"
-alias work.2clics="cd ~/Insync/srodolphe@gmail.com/OneDrive/www/www.2clics.net"
-alias work.minify="cd ~/Insync/srodolphe@gmail.com/OneDrive/www/minify.2clics.net"
-alias work.node-minify="cd ~/Insync/srodolphe@gmail.com/OneDrive/www/github/node-minify"
-alias work.node-version="cd ~/Insync/srodolphe@gmail.com/OneDrive/www/github/node-version"
+alias work="cd ~/Insync/rodolphe.stoclin@outlook.fr/OneDrive/www"
+alias work.2clics="cd ~/Insync/rodolphe.stoclin@outlook.fr/OneDrive/www/www.2clics.net"
+alias work.minify="cd ~/Insync/rodolphe.stoclin@outlook.fr/OneDrive/www/minify.2clics.net"
+alias work.node-minify="cd ~/Insync/rodolphe.stoclin@outlook.fr/OneDrive/www/github/node-minify"
+alias work.node-version="cd ~/Insync/rodolphe.stoclin@outlook.fr/OneDrive/www/github/node-version"
 
 # Network
 alias network.ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -41,9 +41,6 @@ alias network.ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\
 alias network.speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python - --server 24215"
 alias network.ping='prettyping --nolegend'
 alias ping=network.ping
-
-# Flush Directory Service cache
-alias network.flush="sudo nscd -K && sudo nscd && sudo systemd-resolve --flush-caches && echo 'DNS flushed'"
 
 # View HTTP traffic
 alias network.sniff="sudo ngrep -d 'wlo1' -t '^(GET|POST) ' 'tcp and port 80'"

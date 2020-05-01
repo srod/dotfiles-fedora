@@ -4,14 +4,14 @@
 print_in_blue "\n   Packages - System\n\n"
 sudo dnf install -y fedora-workstation-repositories
 sudo dnf distro-sync
-sudo dnf install -y bat ncdu ngrep nmap tcpdump vim xclip neofetch htop
+sudo dnf install -y ncdu ngrep tcpdump vim xclip neofetch htop
 sudo dnf install -y java-latest-openjdk-headless
 sudo dnf install -y snapd
 sudo ln -s /var/lib/snapd/snap /snap
 sudo snap refresh
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 sudo dnf install tlp tlp-rdw
-sudo systemctl enable tlp
+sudo systemctl enable tlp --now
 
 # Security
 sudo dnf install -y clamav clamav-update
@@ -61,8 +61,7 @@ print_in_blue "\n   Packages - Terminal\n\n"
 # Utilities
 sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_Rawhide/hardware:razer.repo
 sudo dnf install -y openrazer-meta
-sudo gpasswd -a rodolphe plugdev
-sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_Rawhide/hardware:razer.repo
+sudo gpasswd -a $USER plugdev
 sudo dnf install -y polychromatic
 sudo snap install simplenote
 
