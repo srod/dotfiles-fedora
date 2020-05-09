@@ -3,6 +3,7 @@
 # System
 print_in_blue "\n   Packages - System\n\n"
 sudo sh -c 'echo "fastestmirror=True" >> /etc/dnf/dnf.conf'
+sudo sh -c 'echo "defaultyes=True" >> /etc/dnf/dnf.conf'
 sudo dnf install -y fedora-workstation-repositories
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf distro-sync
@@ -70,7 +71,7 @@ sudo dnf install -y code-insiders
 print_in_blue "\n   Packages - Terminal\n\n"
 
 # Utilities
-sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_Rawhide/hardware:razer.repo
+sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_32/hardware:razer.repo
 sudo dnf install -y openrazer-meta
 sudo gpasswd -a $USER plugdev
 sudo dnf install -y polychromatic
@@ -87,7 +88,7 @@ sudo dnf install -y balena-etcher-electron
 
 # Videos
 print_in_blue "\n   Packages - Videos\n\n"
-sudo dnf install -y vlc
+# sudo dnf install -y vlc
 sudo flatpak install -y shotcut kdenlive
 
 # Fonts
