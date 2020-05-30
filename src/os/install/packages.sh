@@ -7,6 +7,8 @@ sudo sh -c 'echo "defaultyes=True" >> /etc/dnf/dnf.conf'
 sudo dnf install -y fedora-workstation-repositories
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf distro-sync
+sudo dnf groupupdate -y core
+sudo dnf groupupdate -y multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 sudo dnf install -y ncdu ngrep tcpdump vim xclip neofetch htop
 sudo dnf install -y java-latest-openjdk-headless
 sudo dnf install -y snapd
@@ -88,7 +90,7 @@ sudo dnf install -y balena-etcher-electron
 
 # Videos
 print_in_blue "\n   Packages - Videos\n\n"
-# sudo dnf install -y vlc
+sudo dnf install -y celluloid
 sudo flatpak install -y shotcut kdenlive
 
 # Fonts
@@ -97,6 +99,9 @@ sudo dnf install -y curl cabextract xorg-x11-font-utils fontconfig
 sudo dnf install -y http://sourceforge.net/projects/mscorefonts2/files/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
 sudo dnf install -y fira-code-fonts
 sudo dnf install -y powerline-fonts
+
+# Themes
+sudo dnf install -y gnome-shell-theme-flat-remix
 
 # YARN
 if [ -d "$HOME/.nvm" ]; then
