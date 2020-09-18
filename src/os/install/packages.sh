@@ -41,8 +41,6 @@ sudo dnf check-update
 sudo dnf install -y code
 
 # Utilities
-sudo snap install simplenote
-
 sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
 sudo sh -c 'echo -e "[insync]\nname=insync repo\nbaseurl=http://yum.insync.io/fedora/\$releasever/\ngpgkey=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key" > /etc/yum.repos.d/insync.repo'
 sudo dnf install -y insync
