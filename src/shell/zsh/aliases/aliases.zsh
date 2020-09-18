@@ -21,7 +21,7 @@ alias grep="grep --color=auto"
 alias aliases="subl $DOTFILES/src/shell/zsh/aliases/aliases.zsh"
 
 # Update
-alias fedoraup="sudo dnf distro-sync; sudo dnf upgrade"
+alias fedoraup="sudo dnf upgrade"
 alias flatpakup="flatpak update"
 alias snapup="sudo snap refresh"
 alias npmup="npm -g update; npm install -g npm"

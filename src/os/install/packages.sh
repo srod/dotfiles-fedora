@@ -103,6 +103,9 @@ sudo dnf install -y powerline-fonts
 # Themes
 sudo dnf install -y gnome-shell-theme-flat-remix
 
+# Printers
+sudo dnf install -y epson-inkjet-printer-escpr
+
 # YARN
 if [ -d "$HOME/.nvm" ]; then
     print_in_blue "\n   Packages - Node\n\n"
