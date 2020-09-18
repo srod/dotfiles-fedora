@@ -16,40 +16,11 @@ sudo ln -s /var/lib/snapd/snap /snap
 sudo systemctl enable snapd --now
 sudo snap refresh
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-sudo dnf install -y tlp tlp-rdw
-sudo systemctl enable tlp --now
-
-# Nvidia
-sudo dnf install -y akmod-nvidia
-sudo dnf install -y xorg-x11-drv-nvidia-cuda
-
-# Security
-sudo dnf install -y clamav clamav-update
-sudo sed -i '/Example/d' /etc/freshclam.conf
-sudo freshclam
-sudo systemctl enable clamav-freshclam.service --now
-# clamscan --infected --remove --recursive /home
-sudo dnf install -y clamtk
-
-sudo dnf install -y firewalld
-sudo systemctl unmask firewalld
-sudo systemctl start firewalld
-sudo systemctl enable firewalld
-sudo firewall-cmd --set-default-zone=home
-sudo firewall-cmd --remove-service=ssh --permanent --zone=home
-sudo firewall-cmd --reload
-sudo dnf install -y firewall-config
-
-sudo snap install authy --beta
 
 # Browsers
 print_in_blue "\n   Packages - Browsers\n\n"
 sudo dnf config-manager --set-enabled google-chrome
 sudo dnf install -y google-chrome-stable
-
-# E-mail
-print_in_blue "\n   Packages - E-mail\n\n"
-sudo dnf install -y geary
 
 # GPG
 print_in_blue "\n   Packages - GPG\n"
@@ -67,31 +38,16 @@ print_in_blue "\n   Package - Visual Studio Code\n\n"
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 sudo dnf check-update
-sudo dnf install -y code-insiders
-
-# Terminal
-print_in_blue "\n   Packages - Terminal\n\n"
+sudo dnf install -y code
 
 # Utilities
-sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_32/hardware:razer.repo
-sudo dnf install -y openrazer-meta
-sudo gpasswd -a $USER plugdev
-sudo dnf install -y polychromatic
 sudo snap install simplenote
 
 sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
 sudo sh -c 'echo -e "[insync]\nname=insync repo\nbaseurl=http://yum.insync.io/fedora/\$releasever/\ngpgkey=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key" > /etc/yum.repos.d/insync.repo'
 sudo dnf install -y insync
 
-sudo dnf install -y meld unrar pdfarranger youtube-dl
-
-sudo wget https://balena.io/etcher/static/etcher-rpm.repo -O /etc/yum.repos.d/etcher-rpm.repo
-sudo dnf install -y balena-etcher-electron
-
-# Videos
-print_in_blue "\n   Packages - Videos\n\n"
-sudo dnf install -y celluloid
-sudo flatpak install -y shotcut kdenlive
+sudo dnf install -y meld unrar pdfarranger
 
 # Fonts
 print_in_blue "\n   Packages - Fonts\n\n"
@@ -102,9 +58,6 @@ sudo dnf install -y powerline-fonts
 
 # Themes
 sudo dnf install -y gnome-shell-theme-flat-remix
-
-# Printers
-sudo dnf install -y epson-inkjet-printer-escpr
 
 # YARN
 if [ -d "$HOME/.nvm" ]; then
