@@ -6,9 +6,6 @@ create_symlinks() {
 
         "shell/zshrc"
 
-        "git/gitconfig"
-        "git/gitignore"
-
         "vim/vim"
         "vim/vimrc"
 
