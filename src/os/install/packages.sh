@@ -10,7 +10,5 @@ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noa
 sudo dnf install nano vim wget tar net-tools curl htop neofetch
 
 # Security
-sudo chattr +i /etc/passwd
-sudo chattr +i /etc/shadow
 sudo sed -i '/^PermitRootLogin/s/yes/no/' /etc/ssh/sshd_config
 sudo systemctl restart sshd
