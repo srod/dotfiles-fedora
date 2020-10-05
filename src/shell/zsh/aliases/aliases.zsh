@@ -18,7 +18,7 @@ alias grep="grep --color=auto"
 
 # Update
 alias centosup="sudo dnf upgrade"
-alias update="fedoraup"
+alias update="centosup"
 
 # Network
 alias network.ip="dig +short myip.opendns.com @resolver1.opendns.com"
