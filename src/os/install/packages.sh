@@ -73,7 +73,7 @@ sudo dnf install -y code-insiders
 print_in_blue "\n   Packages - Terminal\n\n"
 
 # Utilities
-sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_32/hardware:razer.repo
+sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_33/hardware:razer.repo
 sudo dnf install -y openrazer-meta
 sudo gpasswd -a $USER plugdev
 sudo dnf install -y polychromatic
