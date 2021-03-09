@@ -47,10 +47,6 @@ print_in_blue "\n   Packages - Browsers\n\n"
 sudo dnf config-manager --set-enabled google-chrome
 sudo dnf install -y google-chrome-stable
 
-# E-mail
-print_in_blue "\n   Packages - E-mail\n\n"
-sudo dnf install -y geary
-
 # GPG
 print_in_blue "\n   Packages - GPG\n"
 sudo dnf install -y https://prerelease.keybase.io/keybase_amd64.rpm
@@ -67,26 +63,23 @@ print_in_blue "\n   Package - Visual Studio Code\n\n"
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 sudo dnf check-update
-sudo dnf install -y code-insiders
-
-# Terminal
-print_in_blue "\n   Packages - Terminal\n\n"
+sudo dnf install -y code
 
 # Utilities
-sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_33/hardware:razer.repo
-sudo dnf install -y openrazer-meta
-sudo gpasswd -a $USER plugdev
-sudo dnf install -y polychromatic
-sudo snap install simplenote
+#sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_33/hardware:razer.repo
+#sudo dnf install -y openrazer-meta
+#sudo gpasswd -a $USER plugdev
+#sudo dnf install -y polychromatic
+#sudo snap install simplenote
 
 sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
 sudo sh -c 'echo -e "[insync]\nname=insync repo\nbaseurl=http://yum.insync.io/fedora/\$releasever/\ngpgkey=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key" > /etc/yum.repos.d/insync.repo'
 sudo dnf install -y insync
 
-sudo dnf install -y meld unrar pdfarranger youtube-dl
+sudo dnf install -y meld unrar pdfarranger
 
-sudo wget https://balena.io/etcher/static/etcher-rpm.repo -O /etc/yum.repos.d/etcher-rpm.repo
-sudo dnf install -y balena-etcher-electron
+#sudo wget https://balena.io/etcher/static/etcher-rpm.repo -O /etc/yum.repos.d/etcher-rpm.repo
+#sudo dnf install -y balena-etcher-electron
 
 # Videos
 print_in_blue "\n   Packages - Videos\n\n"
