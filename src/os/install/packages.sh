@@ -8,7 +8,6 @@ sudo dnf install -y fedora-workstation-repositories
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf distro-sync
 sudo dnf groupupdate -y core
-sudo dnf groupupdate -y multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 sudo dnf install -y ncdu ngrep tcpdump vim xclip neofetch htop
 sudo dnf install -y java-latest-openjdk-headless
 sudo dnf install -y snapd
