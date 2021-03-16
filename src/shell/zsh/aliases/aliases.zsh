@@ -17,8 +17,9 @@ alias pid="ps x | grep -i $1"
 alias grep="grep --color=auto"
 
 # Update
-alias centosup="sudo dnf upgrade"
-alias update="centosup"
+alias dnfup="sudo dnf upgrade"
+alias npmup="npm -g update; npm install -g npm"
+alias update="dnfup; npmup"
 
 # Network
 alias network.ip="dig +short myip.opendns.com @resolver1.opendns.com"
