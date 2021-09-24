@@ -66,20 +66,13 @@ sudo dnf check-update
 sudo dnf install -y code
 
 # Utilities
-#sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/hardware:razer/Fedora_33/hardware:razer.repo
-#sudo dnf install -y openrazer-meta
-#sudo gpasswd -a $USER plugdev
-#sudo dnf install -y polychromatic
-#sudo snap install simplenote
+sudo flatpak install -y flathub org.standardnotes.standardnotes
 
 sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
 sudo sh -c 'echo -e "[insync]\nname=insync repo\nbaseurl=http://yum.insync.io/fedora/\$releasever/\ngpgkey=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key" > /etc/yum.repos.d/insync.repo'
 sudo dnf install -y insync
 
 sudo dnf install -y meld unrar pdfarranger
-
-#sudo wget https://balena.io/etcher/static/etcher-rpm.repo -O /etc/yum.repos.d/etcher-rpm.repo
-#sudo dnf install -y balena-etcher-electron
 
 # Videos
 print_in_blue "\n   Packages - Videos\n\n"
