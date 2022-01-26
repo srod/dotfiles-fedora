@@ -9,7 +9,7 @@ sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-r
 sudo dnf distro-sync
 sudo dnf groupupdate -y core
 sudo dnf groupupdate -y multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
-sudo dnf install -y ncdu ngrep tcpdump vim xclip neofetch htop
+sudo dnf install -y ngrep tcpdump vim xclip neofetch htop
 sudo dnf install -y java-latest-openjdk-headless
 sudo dnf install -y snapd
 sudo ln -s /var/lib/snapd/snap /snap
@@ -88,9 +88,6 @@ sudo dnf install -y powerline-fonts
 
 # Themes
 sudo dnf install -y gnome-shell-theme-flat-remix
-
-# Printers
-sudo dnf install -y epson-inkjet-printer-escpr
 
 # YARN
 if [ -d "$HOME/.nvm" ]; then
