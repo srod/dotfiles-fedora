@@ -1,6 +1,6 @@
 [submodule "shell/zsh/themes/powerlevel10k"]
-  path = shell/zsh/themes/powerlevel10k
-  url = https://github.com/romkatv/powerlevel10k.git
+	path = shell/zsh/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
   ignore = dirty
 [submodule "shell/zsh/plugins/zsh-autosuggestions"]
   path = shell/zsh/plugins/zsh-autosuggestions
