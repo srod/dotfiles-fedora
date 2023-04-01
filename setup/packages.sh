@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # System
-print_in_blue "\n   Packages - System\n\n"
+echo "Packages - System"
 sudo sh -c 'echo "fastestmirror=True" >> /etc/dnf/dnf.conf'
 sudo sh -c 'echo "defaultyes=True" >> /etc/dnf/dnf.conf'
 sudo dnf install -y fedora-workstation-repositories
@@ -43,23 +43,23 @@ sudo dnf install -y firewall-config
 # sudo snap install authy --beta
 
 # Browsers
-print_in_blue "\n   Packages - Browsers\n\n"
+echo "Packages - Browsers"
 # sudo dnf config-manager --set-enabled google-chrome
 # sudo dnf install -y google-chrome-stable
 
 # GPG
-print_in_blue "\n   Packages - GPG\n"
+echo "Packages - GPG"
 sudo dnf install -y https://prerelease.keybase.io/keybase_amd64.rpm
 run_keybase
 
 # IDE
-print_in_blue "\n   Packages - IDE\n\n"
+echo "Packages - IDE"
 sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
 sudo dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
 sudo dnf install -y sublime-text
 
 
-print_in_blue "\n   Package - Visual Studio Code\n\n"
+echo "Package - Visual Studio Code"
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 sudo dnf check-update
@@ -75,12 +75,12 @@ sudo dnf install -y insync
 sudo dnf install -y meld unrar pdfarranger
 
 # Videos
-print_in_blue "\n   Packages - Videos\n\n"
+echo "Packages - Videos"
 sudo dnf install -y celluloid
 # sudo flatpak install -y shotcut kdenlive
 
 # Fonts
-print_in_blue "\n   Packages - Fonts\n\n"
+echo "Packages - Fonts"
 sudo dnf install -y curl cabextract xorg-x11-font-utils fontconfig
 sudo dnf install -y http://sourceforge.net/projects/mscorefonts2/files/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
 sudo dnf install -y fira-code-fonts
@@ -91,7 +91,7 @@ sudo dnf install -y gnome-shell-theme-flat-remix
 
 # YARN
 # if [ -d "$HOME/.nvm" ]; then
-#     print_in_blue "\n   Packages - Node\n\n"
+#     echo "Packages - Node"
 
 #     curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
 #     sudo dnf install -y yarn
