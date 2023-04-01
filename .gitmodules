@@ -1,7 +1,3 @@
-[submodule "dotbot"]
-  path = dotbot
-  url = https://github.com/anishathalye/dotbot
-  ignore = dirty
 [submodule "shell/oh-my-zsh"]
   path = shell/oh-my-zsh
   url = https://github.com/robbyrussell/oh-my-zsh.git
@@ -30,3 +26,6 @@
   path = vim/vim/bundle/vim-pathogen
   url = https://github.com/tpope/vim-pathogen.git
   ignore = dirty
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot
