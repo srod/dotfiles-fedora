@@ -18,8 +18,6 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 sudo dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/fedora37/x86_64/cuda-fedora37.repo
 sudo dnf install kernel-headers kernel-devel tar bzip2 make automake gcc gcc-c++ pciutils elfutils-libelf-devel libglvnd-opengl libglvnd-glx libglvnd-devel acpid pkgconfig dkms
 sudo dnf module install nvidia-driver:latest-dkms
-# sudo dnf install -y akmod-nvidia
-# sudo dnf install -y xorg-x11-drv-nvidia-cuda
 
 # Security
 ohai "Packages - Security"
@@ -78,11 +76,10 @@ sudo dnf install -y curl cabextract xorg-x11-font-utils fontconfig
 sudo dnf install -y http://sourceforge.net/projects/mscorefonts2/files/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
 sudo dnf install -y fira-code-fonts
 sudo dnf install -y powerline-fonts
-sudo dnf install -y meslo-lg-fonts
-# wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
-# unzip Meslo.zip -d ~/.fonts
-# fc-cache -fv
-# rm -f Meslo.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+unzip Meslo.zip -d ~/.fonts
+fc-cache -fv
+rm -f Meslo.zip
 
 
 # Themes
